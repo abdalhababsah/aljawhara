@@ -10,7 +10,8 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 
 // Home Route
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/menu', [HomeController::class, 'menu'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('video');
 
 // Localization Route
 Route::get('/lang/{locale}', [LocalizationController::class, 'switchLang'])->name('lang.switch');
@@ -30,28 +31,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
      * Users Management Routes
      */
     
-    // Display a listing of users
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    
-    // Show the form for creating a new user
-    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-    
-    // Store a newly created user in storage
-    Route::post('/users', [UserController::class, 'store'])->name('users.store');
-    
-    // Display the specified user
-    Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-    
-    // Show the form for editing the specified user
-    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-    
-    // Update the specified user in storage
-    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
-    Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
-    
-    // Remove the specified user from storage
-    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-    
+
     /*
      * Products Management Routes
      */

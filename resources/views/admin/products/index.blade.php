@@ -2,7 +2,32 @@
 
 @section('content')
 <div class="container-fluid py-4">
+    <!-- Flash Messages -->
+    
     <div class="row">
+        <div id="flash-message-container">
+            @if (session('success'))
+                <div id="flash-success" class="flash-message">
+                    {{ session('success') }}
+                </div>
+            @endif
+    
+            @if (session('error'))
+                <div id="flash-error" class="flash-message">
+                    {{ session('error') }}
+                </div>
+            @endif
+    
+            @if ($errors->any())
+                <div id="flash-error" class="flash-message">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
         <div class="col-12">
             <div class="card mb-4">
                 <!-- Card Header -->
@@ -169,4 +194,162 @@
         </div>
     </div>
 </div>
+<style>
+    /* Flash Messages Container */
+#flash-message-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 300px;
+    z-index: 1050; /* Ensure it appears above other content */
+}
+
+/* Common Styles for All Flash Messages */
+.flash-message {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    opacity: 0.9;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Success Message */
+#flash-success {
+    background-color: #28a745; /* Green */
+}
+
+/* Error Message */
+#flash-error {
+    background-color: #dc3545; /* Red */
+}
+
+/* Optional: Hide the flash message after a certain time */
+.flash-message.fade-out {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+/* Trigger fade-out animation */
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* Pagination Container */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Custom Pagination Styles */
+.custom-pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.custom-pagination li {
+    margin: 0 5px;
+}
+
+.custom-pagination li a, .custom-pagination li span {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    color: #333333;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.custom-pagination li a:hover {
+    background-color: #dddddd;
+}
+
+.custom-pagination .active span {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.custom-pagination .disabled span {
+    background-color: #e9ecef;
+    color: #6c757d;
+}
+
+/* Example Button Styles */
+.btn-success {
+    background-color: #28a745;
+    color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: #212529;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+}
+</style>
 @endsection

@@ -14,16 +14,9 @@ class HomeController extends Controller
      * @param  int|null  $category_id
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function menu(Request $request)
     {
-        // Check if it's the user's first visit
-        if (!$request->session()->has('first_visit')) {
-            // Mark this as the first visit
-            $request->session()->put('first_visit', true);
-            $firstVisit = true;
-        } else {
-            $firstVisit = true;
-        }
+
 
         // Check for category filtering
         if ($request->category_id) {
@@ -44,6 +37,10 @@ class HomeController extends Controller
         $categories = Category::all();
 
         // Pass products, categories, and firstVisit flag to the view
-        return view('welcome', compact('products', 'categories', 'firstVisit'));
+        return view('home', compact('products', 'categories'));
+    }
+
+    public function index(){
+        return view('video');
     }
 }
