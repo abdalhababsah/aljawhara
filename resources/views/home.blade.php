@@ -366,6 +366,8 @@
             font-size: 1.1rem;
         }
     }
+    /* Fullscreen modal for mobile and tablet */
+
 </style>
     <div class="container-fluid py-4">
         <div class="card-container">
@@ -420,7 +422,8 @@
             </div>
         </div>
     </div>
-
+<!-- Include Hammer.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Include Turn.js -->
@@ -449,86 +452,121 @@
 
             // Initialize Turn.js after images are loaded
             function initializeFlipbook() {
-                $('#flipbook').turn({
-                    width: '100%',
-                    height: '100%',
-                    autoCenter: true,
-                    acceleration: true,
-                    gradients: true,
-                    elevation: 50,
-                    display: 'single', // Display one page at a time
-                    page: currentPage,
-                    when: {
-                        turning: function(event, page, view) {
-                            // Update currentPage before the turn
-                            currentPage = page;
-                            updateSwipeIndicator();
-                        },
-                        turned: function(event, page, view) {
-                            // Update currentPage after the turn
-                            currentPage = page;
-                            updateSwipeIndicator();
-                        }
+            $('#flipbook').turn({
+                width: '100%',
+                height: '100%',
+                autoCenter: true,
+                acceleration: true,
+                gradients: true,
+                elevation: 50,
+                display: 'single', // Display one page at a time
+                page: currentPage,
+                when: {
+                    turning: function(event, page, view) {
+                        // Update currentPage before the turn
+                        currentPage = page;
+                        updateSwipeIndicator();
+                    },
+                    turned: function(event, page, view) {
+                        // Update currentPage after the turn
+                        currentPage = page;
+                        updateSwipeIndicator();
                     }
-                });
-            }
-
-            // Show the slider modal and initialize Turn.js
-            function showSlider(startPage) {
-                currentPage = startPage;
-                $('#productSliderModal').fadeIn(300, function() {
-                    // Restore flipbook content
-                    $('#flipbook').html(initialFlipbookContent);
-                    initializeFlipbook();
-                    $('#flipbook').turn('page', currentPage);
-                    updateSwipeIndicator(); // Initialize the swipe indicator
-                });
-            }
-
-            // Hide the slider modal and destroy Turn.js instance
-            function hideSlider() {
-                if ($('#flipbook').turn('is')) {
-                    $('#flipbook').turn('destroy');
                 }
-                // Clear the flipbook content
-                $('#flipbook').html('');
-                $('#productSliderModal').fadeOut(300);
-            }
-
-            // Handle product card click
-            $('.product-card').on('click', function() {
-                var index = $(this).closest('.card-wrapper').index() + 1; // Turn.js pages are 1-indexed
-                showSlider(index);
             });
 
-            // Handle close button click
-            $('#sliderCloseBtn').on('click', function() {
+            // Initialize Hammer.js on the flipbook
+            var flipbookElement = document.getElementById('flipbook');
+            var hammer = new Hammer(flipbookElement);
+
+            // Enable swipe recognition
+            hammer.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL });
+
+            // Handle swipe left to go to the next page
+            hammer.on('swipeleft', function() {
+                if (currentPage < totalPages) {
+                    $('#flipbook').turn('next');
+                }
+            });
+
+            // Handle swipe right to go to the previous page
+            hammer.on('swiperight', function() {
+                if (currentPage > 1) {
+                    $('#flipbook').turn('previous');
+                }
+            });
+        }
+
+        // Prevent touch events from propagating to the background
+        $('.custom-slider-content').on('touchmove', function(e) {
+            e.stopPropagation(); // Stops the event from reaching the parent elements
+        });
+
+        // Disable background scrolling when modal is open
+        function disableBackgroundScroll() {
+            $('body').css('overflow', 'hidden');
+        }
+
+        function enableBackgroundScroll() {
+            $('body').css('overflow', '');
+        }
+
+        // Show the slider modal and initialize Turn.js
+        function showSlider(startPage) {
+            currentPage = startPage;
+            $('#productSliderModal').fadeIn(300, function() {
+                // Restore flipbook content
+                $('#flipbook').html(initialFlipbookContent);
+                initializeFlipbook();
+                $('#flipbook').turn('page', currentPage);
+                updateSwipeIndicator(); // Initialize the swipe indicator
+            });
+        }
+
+        // Hide the slider modal and destroy Turn.js instance
+        function hideSlider() {
+            if ($('#flipbook').turn('is')) {
+                $('#flipbook').turn('destroy');
+            }
+            // Clear the flipbook content
+            $('#flipbook').html('');
+            $('#productSliderModal').fadeOut(300);
+        }
+
+        // Handle product card click
+        $('.product-card').on('click', function() {
+            var index = $(this).closest('.card-wrapper').index() + 1; // Turn.js pages are 1-indexed
+            showSlider(index);
+        });
+
+        // Handle close button click
+        $('#sliderCloseBtn').on('click', function() {
+            hideSlider();
+        });
+
+        // Optional: Close modal when clicking outside the content
+        $('#productSliderModal').on('click', function(e) {
+            if ($(e.target).is('.custom-slider-overlay')) {
                 hideSlider();
-            });
-
-            // Optional: Close modal when clicking outside the content
-            $('#productSliderModal').on('click', function(e) {
-                if ($(e.target).is('.custom-slider-overlay')) {
-                    hideSlider();
-                }
-            });
-
-            // Function to update the swipe indicator based on the current page
-            function updateSwipeIndicator() {
-                let swipeText = '';
-                if (currentPage === 1 && totalPages > 1) {
-                    swipeText = '<i class="fa fa-arrow-left"></i> Swipe Left to see more';
-                } else if (currentPage > 1 && currentPage < totalPages) {
-                    swipeText =
-                        '<i class="fa fa-arrow-left"></i> Swipe Left | Swipe Right <i class="fa fa-arrow-right"></i>';
-                } else if (currentPage === totalPages && totalPages > 1) {
-                    swipeText = 'Swipe Right to go back <i class="fa fa-arrow-right"></i>';
-                } else {
-                    swipeText =
-                        'Swipe Left or Right to navigate <i class="fa fa-arrow-left"></i> <i class="fa fa-arrow-right"></i>';
-                }
-                $('.swipe-indicator').html(swipeText);
             }
         });
+
+        // Function to update the swipe indicator based on the current page
+        function updateSwipeIndicator() {
+            let swipeText = '';
+            if (currentPage === 1 && totalPages > 1) {
+                swipeText = '<i class="fa fa-arrow-left"></i> Swipe Left to see more';
+            } else if (currentPage > 1 && currentPage < totalPages) {
+                swipeText =
+                    '<i class="fa fa-arrow-left"></i> Swipe Left | Swipe Right <i class="fa fa-arrow-right"></i>';
+            } else if (currentPage === totalPages && totalPages > 1) {
+                swipeText = 'Swipe Right to go back <i class="fa fa-arrow-right"></i>';
+            } else {
+                swipeText =
+                    'Swipe Left or Right to navigate <i class="fa fa-arrow-left"></i> <i class="fa fa-arrow-right"></i>';
+            }
+            $('.swipe-indicator').html(swipeText);
+        }
+    });
     </script>
 @endsection

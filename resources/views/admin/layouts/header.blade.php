@@ -30,16 +30,4 @@
     </div>
 </nav>
 
-<style>
-    .icon-img {
-        height: auto;
-        /* Adjust to your desired icon size */
-        width: 50px;
-        /* Keep icons square */
-    }
 
-    .icon-group a {
-        margin: 0 2px;
-        /* Add space between icons */
-    }
-</style>
