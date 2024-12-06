@@ -17,9 +17,9 @@ Route::get('/', [HomeController::class, 'index'])->name('video');
 Route::get('/lang/{locale}', [LocalizationController::class, 'switchLang'])->name('lang.switch');
 
 // Admin Routes
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::prefix('admin')->name('admin.')->group(function () {
     
-    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     // Admin Dashboard
     Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -55,7 +55,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     
     // Update the specified product in storage
     Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
-    Route::patch('/products/{product}', [ProductController::class, 'update'])->name('products.update');
     
     // Remove the specified product from storage
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
@@ -81,7 +80,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     
     // Update the specified category in storage
     Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
-    Route::patch('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
     
     // Remove the specified category from storage
     Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
