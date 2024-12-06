@@ -14,7 +14,8 @@
                     </video>
 
                     <div class="center-button" id="exploreButton">
-                        <a href="javascript:void(0);" class="btn btn-primary" id="exploreButtonLink">Explore Products</a>
+                        <a href="javascript:void(0);" class="btn bg-gradient-dark" id="exploreButtonLink">Explore
+                            Products</a>
                     </div>
                 </div>
             @endif
@@ -23,7 +24,8 @@
                 <div class="card-wrapper">
                     <div class="card p-3 bg-white product-card">
                         <div class="about-product text-center mt-3">
-                            <img src="{{ asset('storage/' . $product->image) }}" class="img-fluid product-img" alt="{{ $product->description_ar }}">
+                            <img src="{{ asset('storage/' . $product->image) }}" class="img-fluid product-img"
+                                alt="{{ $product->description_ar }}">
                             <div class="mt-3">
                                 <h4 class="text-dark">{{ $product->name_ar }}</h4>
                             </div>
@@ -74,7 +76,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
 
     <style>
-
         /* Your existing styles */
         .video-container {
             position: fixed;
@@ -82,8 +83,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1000000; /* Ensure it's behind other elements */
-            background: rgba(0, 0, 0, 0.5); /* Optional: Add a semi-transparent overlay */
+            z-index: 1000000;
+            /* Ensure it's behind other elements */
+            background: rgba(0, 0, 0, 0.5);
+            /* Optional: Add a semi-transparent overlay */
         }
 
         .background-video {
@@ -98,7 +101,8 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            z-index: 1; /* Ensure the button is above the video */
+            z-index: 1;
+            /* Ensure the button is above the video */
         }
 
         .center-button .btn {
@@ -121,10 +125,10 @@
         }
 
         /* Remove this CSS as it’s not needed anymore
-        #exploreButtonLink.clicked ~ #videoSection {
-            display: none;
-        }
-        */
+            #exploreButtonLink.clicked ~ #videoSection {
+                display: none;
+            }
+            */
 
         /* Existing Styles */
         body {
@@ -396,6 +400,26 @@
             /* Optional: Color the arrows */
         }
 
+        .about-product img {
+            transition: transform 1.5s ease;
+            /* Smooth transition for hover */
+            animation: zoomIn 1.5s ease forwards;
+            /* Animation on render */
+        }
+
+        /* Keyframes for zoom-in effect */
+        @keyframes zoomIn {
+            from {
+                transform: scale(1);
+                /* Initial size */
+            }
+
+            to {
+                transform: scale(1.05);
+                /* Slight zoom (5%) */
+            }
+        }
+
         /* Adjust footer styles for smaller screens */
         @media (max-width: 767px) {
             .swipe-indicator {
@@ -420,8 +444,9 @@
         $(document).ready(function() {
             // Handle 'Explore Products' button click to fade out the video section
             $('#exploreButtonLink').on('click', function() {
-                $('#videoSection').fadeOut(500, function() {
-                    // Optionally, you can perform additional actions after the fade-out completes
+                $('#videoSection').slideUp(500, function() {
+                    $(this)
+                .remove(); // Optionally remove the video section from the DOM after the animation
                 });
             });
 

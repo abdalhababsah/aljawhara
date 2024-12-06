@@ -4,22 +4,48 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-    <title>
-        Material Dashboard 3 by Creative Tim
-    </title>
-    <!--     Fonts and icons     -->
+
+    <!-- Title for SEO -->
+    <title>جوهرة الشرق - كنافة وحلويات شرقية | أفضل الحلويات العربية</title>
+
+    <!-- Meta Description -->
+    <meta name="description"
+        content="جوهرة الشرق تقدم أجود أنواع الكنافة والحلويات الشرقية التي تُعد بعناية وحب. استمتع بألذ الحلويات المصنوعة من المكونات الطبيعية والطازجة.">
+
+    <!-- Meta Keywords -->
+    <meta name="keywords"
+        content="جوهرة الشرق, كنافة, حلويات شرقية, حلويات عربية, كنافة نابلسية, حلويات لذيذة, جوهرة الحلويات, محلات حلويات">
+
+    <!-- Meta Author -->
+    <meta name="author" content="جوهرة الشرق">
+
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:title" content="جوهرة الشرق - كنافة وحلويات شرقية" />
+    <meta property="og:description"
+        content="أفضل الحلويات الشرقية من جوهرة الشرق. تجربة لا تُنسى مع أجود أنواع الكنافة والحلويات العربية." />
+    <meta property="og:image" content="{{ asset('assets/img/logos/sweets-bg.png') }}" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="جوهرة الشرق - كنافة وحلويات شرقية">
+    <meta name="twitter:description" content="جوهرة الشرق تقدم لكم ألذ الحلويات والكنافة المصنوعة بأعلى جودة.">
+    <meta name="twitter:image" content="{{ asset('assets/img/logos/sweets-bg.png') }}">
+
+    <!-- Favicon and Icons -->
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/logos/sweets-bg.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/img/logos/sweets-bg.png') }}">
+
+    <!-- Fonts and Icons -->
     <link rel="stylesheet" type="text/css"
         href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,900" />
-    <!-- Nucleo Icons -->
     <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
-    <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <!-- Material Icons -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('assets/css/material-dashboard.css?v=3.2.0') }}" rel="stylesheet" />
 </head>

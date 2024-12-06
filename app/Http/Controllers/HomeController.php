@@ -22,7 +22,7 @@ class HomeController extends Controller
             $request->session()->put('first_visit', true);
             $firstVisit = true;
         } else {
-            $firstVisit = false;
+            $firstVisit = true;
         }
 
         // Check for category filtering
