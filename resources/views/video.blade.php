@@ -6,11 +6,12 @@
     <div class="container-fluid py-4">
         <div class="card-container">
             <div class="video-container" id="videoSection">
-                <video autoplay muted playsinline loop class="background-video" poster="images/IMG-0653-4.jpg" preload="auto">
-                    <source src="{{ asset('assets/output.mp4') }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                  </video>
 
+                <video autoplay muted loop playsinline preload="auto" poster="{{asset("assets/img/IMG-0653-4.jpg")}}" class="background-video">
+                    <source src="{{ asset('assets/output.mp4') }}" type="video/mp4">
+                    <source src="{{ asset('assets/video.webm') }}" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
 
                 <div class="center-button" id="exploreButton">
                     <a href="{{ url('menu') }}" class="btn bg-gradient-dark" id="exploreButtonLink">Explore Products</a>
