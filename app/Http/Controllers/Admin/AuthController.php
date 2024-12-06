@@ -67,6 +67,6 @@ class AuthController extends Controller
         // Regenerate CSRF token
         $request->session()->regenerateToken();
 
-        return redirect('/admin/login')->with('success', 'تم تسجيل الخروج بنجاح!');
+        return redirect('/login')->with('success', 'تم تسجيل الخروج بنجاح!');
     }
 }

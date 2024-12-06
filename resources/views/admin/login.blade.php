@@ -60,7 +60,7 @@
               </div>
               <div class="card-body">
                 <!-- Login Form -->
-                <form method="POST" action="{{ route('admin.login') }}" role="form" class="text-start">
+                <form method="POST" action="{{ route('admin.login.submit') }}" role="form" class="text-start">
                   @csrf
 
                   <!-- Email Field -->
