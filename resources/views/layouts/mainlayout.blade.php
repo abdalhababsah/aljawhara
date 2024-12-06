@@ -42,13 +42,13 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
 
   <!-- CSS Files -->
-  <link id="pagestyle" href="{{ asset('assets/css/material-dashboard.css?v=3.2.0') }}" rel="stylesheet" />
+  <link id="pagestyle" href="{{ asset('assets/css/material-dashboard.css') }}" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show rtl bg-gray-100">
-
+    @unless (Request::is('/'))
     @include('layouts.sidebar')
-
+    @endunless
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg overflow-x-hidden">
         <!-- Navbar -->
         @include('layouts.header')
