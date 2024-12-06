@@ -1,0 +1,106 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LocalizationController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CategoryController;
+
+// Home Route
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Localization Route
+Route::get('/lang/{locale}', [LocalizationController::class, 'switchLang'])->name('lang.switch');
+
+// Admin Routes
+Route::prefix('admin')->name('admin.')->group(function () {
+    
+    // Admin Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    
+    // Admin Authentication Routes
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    
+    /*
+     * Users Management Routes
+     */
+    
+    // Display a listing of users
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    
+    // Show the form for creating a new user
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    
+    // Store a newly created user in storage
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    
+    // Display the specified user
+    Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+    
+    // Show the form for editing the specified user
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    
+    // Update the specified user in storage
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
+    
+    // Remove the specified user from storage
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+    
+    /*
+     * Products Management Routes
+     */
+    
+    // Display a listing of products
+    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+    
+    // Show the form for creating a new product
+    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+    
+    // Store a newly created product in storage
+    Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+    
+    // Display the specified product
+    Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+    
+    // Show the form for editing the specified product
+    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    
+    // Update the specified product in storage
+    Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
+    Route::patch('/products/{product}', [ProductController::class, 'update'])->name('products.update');
+    
+    // Remove the specified product from storage
+    Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+    
+    /*
+     * Categories Management Routes
+     */
+    
+    // Display a listing of categories
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+    
+    // Show the form for creating a new category
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+    
+    // Store a newly created category in storage
+    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+    
+    // Display the specified category
+    Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
+    
+    // Show the form for editing the specified category
+    Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+    
+    // Update the specified category in storage
+    Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+    Route::patch('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+    
+    // Remove the specified category from storage
+    Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+});
