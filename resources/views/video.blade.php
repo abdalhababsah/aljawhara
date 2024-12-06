@@ -9,7 +9,6 @@
 
                 <video autoplay muted loop playsinline preload="auto" poster="{{asset("assets/img/IMG-0653-4.jpg")}}" class="background-video">
                     <source src="{{ asset('assets/output.mp4') }}" type="video/mp4">
-                    <source src="{{ asset('assets/video.webm') }}" type="video/webm">
                     Your browser does not support the video tag.
                 </video>
 
