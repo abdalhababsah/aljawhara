@@ -6,27 +6,27 @@
     <div class="container-fluid py-4">
         <div class="card-container">
 
-                @forelse ($products as $product)
-                    <div class="custom-card-wrapper">
-                        <div class="custom-card">
-                            <div class="custom-about-product">
-                                <img src="{{ asset('storage/' . $product->image) }}" class="custom-product-img"
-                                    alt="{{ $product->description_ar }}">
-                                <div class="custom-card-title">
-                                    <h4>{{ $product->name_ar }}</h4>
-                                </div>
+
+            @forelse ($products as $product)
+                <div class="card-wrapper">
+                    <div class="card p-3 bg-white product-card">
+                        <div class="about-product text-center mt-3">
+                            <img src="{{ asset('storage/' . $product->image) }}" class="img-fluid product-img"
+                                alt="{{ $product->description_ar }}">
+                            <div class="mt-3">
+                                <h4 class="text-dark">{{ $product->name_ar }}</h4>
                             </div>
-                            <div class="custom-stats">
-                                <div class="custom-price-container">
-                                    <span class="custom-price">${{ number_format($product->price, 2) }}</span>
-                                </div>
+                        </div>
+                        <div class="stats mt-3">
+                            <div class="d-flex justify-content-between align-items-center p-price">
+                                <span class="fw-bold text-success">${{ number_format($product->price, 2) }}</span>
                             </div>
                         </div>
                     </div>
-                @empty
-                    <p class="custom-no-products-message">لا توجد منتجات متاحة لهذا الصنف</p>
-                @endforelse
-  
+                </div>
+            @empty
+                <p>لا توجد منتجات متاحة لهذا الصنف</p>
+            @endforelse
         </div>
 
     </div>
@@ -163,131 +163,17 @@
             justify-content: space-between;
         }
 
-/* Container for all cards */
-.custom-card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-    margin-left: 50px; /* Adjust as per your layout */
-    background-color: #f9f9f9; /* Optional: Background color */
-}
+        .card-wrapper:nth-child(1) {
+            animation-delay: 0.2s;
+        }
 
-/* Card Wrapper */
-.custom-card-wrapper {
-    animation: fadeInUp 0.7s ease-in-out;
-    opacity: 0;
-    transform: translateY(20px);
-    animation-fill-mode: forwards;
-    display: flex;
-    justify-content: center;
-}
+        .card-wrapper:nth-child(2) {
+            animation-delay: 0.4s;
+        }
 
-/* Individual Card */
-.custom-card {
-    width: 270px;
-    height: 420px;
-    background-color: #ffffff;
-    padding: 20px; /* Equivalent to p-3 */
-    box-sizing: border-box;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-/* Hover Effect for Card */
-.custom-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-/* About Product Section */
-.custom-about-product {
-    text-align: center; /* Equivalent to text-center */
-    margin-top: 15px; /* Equivalent to mt-3 */
-}
-
-/* Product Image */
-.custom-product-img {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-    transition: transform 1.5s ease;
-    animation: zoomIn 1.5s ease forwards;
-}
-
-/* Product Title */
-.custom-card-title {
-    margin-top: 15px; /* Equivalent to mt-3 */
-}
-
-.custom-card-title h4 {
-    font-size: 1.2rem;
-    color: #333333; /* Equivalent to text-dark */
-    margin: 0; /* Remove default margin */
-}
-
-/* Stats Section */
-.custom-stats {
-    margin-top: 15px; /* Equivalent to mt-3 */
-}
-
-/* Price Container */
-.custom-price-container {
-    display: flex; /* Equivalent to d-flex */
-    justify-content: space-between; /* Equivalent to justify-content-between */
-    align-items: center; /* Equivalent to align-items-center */
-    padding: 10px 0; /* Optional: Spacing */
-}
-
-/* Price */
-.custom-price {
-    font-weight: bold; /* Equivalent to fw-bold */
-    color: #28a745; /* Equivalent to text-success */
-    font-size: 1rem;
-}
-
-/* Empty State Message */
-.custom-no-products-message {
-    font-size: 1.2rem;
-    color: #ff0000; /* Red color for visibility */
-    text-align: center;
-    width: 100%;
-    margin-top: 20px;
-}
-
-/* Animations */
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes zoomIn {
-    from {
-        transform: scale(1);
-    }
-    to {
-        transform: scale(1.05);
-    }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .custom-card-container {
-        margin-left: 20px; /* Reduce left margin for smaller screens */
-    }
-
-    .custom-card {
-        width: 90%; /* Make cards full-width on smaller screens */
-        height: auto; /* Adjust height accordingly */
-    }
-}
+        .card-wrapper:nth-child(3) {
+            animation-delay: 0.6s;
+        }
 
         .card {
             width: 270px;
