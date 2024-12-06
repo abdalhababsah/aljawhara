@@ -85,7 +85,7 @@
             margin-left: 50px;
             justify-content: center;
             gap: 20px;
-            margin-top: 20px;
+            margin-top: 70px;
         }
 
         .card-wrapper {

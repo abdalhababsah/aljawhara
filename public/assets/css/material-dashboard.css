@@ -25825,9 +25825,7 @@ hr.horizontal.gray-light {
   transition: box-shadow 0.25s ease-in, background-color 0.25s ease-in;
 }
 
-.navbar-main.fixed-top {
-  width: calc(100% - (14rem + 1.5rem * 3));
-}
+
 
 .navbar-main.fixed-top+[class*=container] {
   margin-top: 7.1875rem !important;

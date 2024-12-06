@@ -47,12 +47,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Store a newly created product in storage
     Route::post('/products', [ProductController::class, 'store'])->name('products.store');
     
-    // Display the specified product
-    Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
-    
-    // Show the form for editing the specified product
-    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
-    
     // Update the specified product in storage
     Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
     
@@ -71,13 +65,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     
     // Store a newly created category in storage
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
-    
-    // Display the specified category
-    Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
-    
-    // Show the form for editing the specified category
-    Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
-    
+
     // Update the specified category in storage
     Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
     

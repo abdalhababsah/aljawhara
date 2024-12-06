@@ -9,10 +9,8 @@
             right: 20px;
             width: 300px;
             z-index: 1050;
-            /* Ensure it appears above other content */
         }
 
-        /* Common Styles for All Flash Messages */
         .flash-message {
             padding: 15px;
             margin-bottom: 10px;
@@ -23,150 +21,42 @@
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
-        /* Success Message */
         #flash-success {
             background-color: #28a745;
-            /* Green */
         }
 
-        /* Error Message */
         #flash-error {
             background-color: #dc3545;
-            /* Red */
-        }
-
-        /* Optional: Hide the flash message after a certain time */
-        .flash-message.fade-out {
-            opacity: 0;
-            transform: translateY(-20px);
         }
 
         .modal {
             z-index: 1060 !important;
-            /* Ensure it appears above other content */
         }
 
         .modal-backdrop {
             z-index: 1050 !important;
-            /* Ensure the backdrop appears above the page but below the modal */
         }
 
-        /* Trigger fade-out animation */
-        @keyframes fadeOut {
-            to {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-        }
-
-        /* Pagination Container */
         .pagination-container {
             display: flex;
             justify-content: center;
             margin-top: 20px;
         }
 
-        /* Custom Pagination Styles */
-        .custom-pagination {
-            display: flex;
-            list-style: none;
-            padding: 0;
-        }
-
-        .custom-pagination li {
-            margin: 0 5px;
-        }
-
-        .custom-pagination li a,
-        .custom-pagination li span {
-            display: block;
-            padding: 8px 12px;
-            border-radius: 4px;
-            background-color: #f1f1f1;
-            color: #333333;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .custom-pagination li a:hover {
-            background-color: #dddddd;
-        }
-
-        .custom-pagination .active span {
-            background-color: #007bff;
-            color: #ffffff;
-        }
-
-        .custom-pagination .disabled span {
-            background-color: #e9ecef;
-            color: #6c757d;
-        }
-
-        /* Example Button Styles */
-        .btn-success {
-            background-color: #28a745;
-            color: #ffffff;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
         .btn-success:hover {
             background-color: #218838;
-        }
-
-        .btn-warning {
-            background-color: #ffc107;
-            color: #212529;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
         }
 
         .btn-warning:hover {
             background-color: #e0a800;
         }
 
-        .btn-danger {
-            background-color: #dc3545;
-            color: #ffffff;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
         .btn-danger:hover {
             background-color: #c82333;
         }
 
-        .btn-secondary {
-            background-color: #6c757d;
-            color: #ffffff;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
         .btn-secondary:hover {
             background-color: #5a6268;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            color: #ffffff;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
         }
 
         .btn-primary:hover {
@@ -175,46 +65,43 @@
     </style>
     <div class="container-fluid py-4">
         <!-- Flash Messages -->
+        <div id="flash-message-container">
+            @if (session('success'))
+                <div id="flash-success" class="flash-message">
+                    {{ session('success') }}
+                </div>
+            @endif
 
+            @if (session('error'))
+                <div id="flash-error" class="flash-message">
+                    {{ session('error') }}
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div id="flash-error" class="flash-message">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
+
+        <!-- Products Table -->
         <div class="row">
-            <div id="flash-message-container" style="z-index: 3006666">
-                @if (session('success'))
-                    <div id="flash-success" class="flash-message">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
-                @if (session('error'))
-                    <div id="flash-error" class="flash-message">
-                        {{ session('error') }}
-                    </div>
-                @endif
-
-                @if ($errors->any())
-                    <div id="flash-error" class="flash-message">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-            </div>
             <div class="col-12">
                 <div class="card mb-4">
-                    <!-- Card Header -->
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                        <div id="banner"
-                            class="bg-gradient-dark px-3 shadow-dark border-radius-lg pt-4 pb-3 d-flex justify-content-between align-items-center">
+                        <div class="bg-gradient-dark px-3 shadow-dark border-radius-lg pt-4 pb-3 d-flex justify-content-between align-items-center">
                             <h6 class="text-white text-capitalize ps-3 mb-0">جدول المنتجات</h6>
-                            <!-- Add Product Button -->
                             <button type="button" class="btn btn-success btn-sm me-3" data-bs-toggle="modal"
                                 data-bs-target="#createProductModal">
                                 إضافة منتج
                             </button>
                         </div>
                     </div>
-                    <!-- Card Body -->
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive">
                             <table class="table align-items-center">
@@ -232,22 +119,19 @@
                                     @forelse ($products as $product)
                                         <tr>
                                             <td>
-                                                <img src="{{ asset('storage/' . $product->image) }}"
-                                                    alt="{{ $product->name_ar }}" width="50">
+                                                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name_ar }}" width="50">
                                             </td>
                                             <td>{{ $product->name_ar }}</td>
                                             <td>{{ $product->description_ar }}</td>
                                             <td>{{ $product->price }}</td>
                                             <td>{{ $product->category->name_ar }}</td>
                                             <td>
-                                                <!-- Edit Button -->
                                                 <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal"
-                                                    data-bs-target="#editProductModal-{{ $product->id }}">
+                                                    data-bs-target="#editProductModal"
+                                                    onclick="populateEditModal({{ $product }}, '{{ route('admin.products.update', $product->id) }}')">
                                                     تعديل
                                                 </button>
-                                                <!-- Delete Form -->
-                                                <form action="{{ route('admin.products.destroy', $product->id) }}"
-                                                    method="POST" style="display: inline;">
+                                                <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" style="display: inline;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger"
@@ -255,81 +139,6 @@
                                                 </form>
                                             </td>
                                         </tr>
-
-                                        <!-- Edit Product Modal -->
-                                        <div class="modal fade" id="editProductModal-{{ $product->id }}" tabindex="-1"
-                                            aria-labelledby="editProductModalLabel-{{ $product->id }}" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <form action="{{ route('admin.products.update', $product->id) }}"
-                                                    method="POST" enctype="multipart/form-data">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title"
-                                                                id="editProductModalLabel-{{ $product->id }}">تعديل المنتج
-                                                            </h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="إغلاق"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <!-- Form Fields -->
-                                                            <div class="mb-3">
-                                                                <label for="name_ar_{{ $product->id }}"
-                                                                    class="form-label">اسم المنتج</label>
-                                                                <input type="text" class="form-control"
-                                                                    id="name_ar_{{ $product->id }}" name="name_ar"
-                                                                    value="{{ $product->name_ar }}" required>
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="description_ar_{{ $product->id }}"
-                                                                    class="form-label">وصف المنتج</label>
-                                                                <textarea class="form-control" id="description_ar_{{ $product->id }}" name="description_ar" rows="3">{{ $product->description_ar }}</textarea>
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="price_{{ $product->id }}"
-                                                                    class="form-label">السعر</label>
-                                                                <input type="number" step="0.01" class="form-control"
-                                                                    id="price_{{ $product->id }}" name="price"
-                                                                    value="{{ $product->price }}" required>
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="category_id_{{ $product->id }}"
-                                                                    class="form-label">الفئة</label>
-                                                                <select class="form-select"
-                                                                    id="category_id_{{ $product->id }}" name="category_id"
-                                                                    required>
-                                                                    <option value="" disabled>اختر الفئة</option>
-                                                                    @foreach ($categories as $category)
-                                                                        <option value="{{ $category->id }}"
-                                                                            {{ $product->category_id == $category->id ? 'selected' : '' }}>
-                                                                            {{ $category->name_ar }}
-                                                                        </option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="image_{{ $product->id }}"
-                                                                    class="form-label">الصورة</label>
-                                                                <input class="form-control" type="file"
-                                                                    id="image_{{ $product->id }}" name="image">
-                                                                @if ($product->image)
-                                                                    <img src="{{ asset('storage/' . $product->image) }}"
-                                                                        alt="{{ $product->name_ar }}" width="50"
-                                                                        class="mt-2">
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">إلغاء</button>
-                                                            <button type="submit" class="btn btn-primary">حفظ
-                                                                التعديلات</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
                                     @empty
                                         <tr>
                                             <td colspan="6">لا توجد منتجات حالياً.</td>
@@ -338,7 +147,6 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!-- Pagination Links -->
                         <div class="d-flex justify-content-center mt-3">
                             {{ $products->links('vendor.pagination.bootstrap-4') }}
                         </div>
@@ -356,11 +164,9 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="createProductModalLabel">إضافة منتج جديد</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="إغلاق"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
                         </div>
                         <div class="modal-body">
-                            <!-- Form Fields -->
                             <div class="mb-3">
                                 <label for="name_ar" class="form-label">اسم المنتج</label>
                                 <input type="text" class="form-control" id="name_ar" name="name_ar" required>
@@ -371,8 +177,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="price" class="form-label">السعر</label>
-                                <input type="number" step="0.01" class="form-control" id="price" name="price"
-                                    required>
+                                <input type="number" step="0.01" class="form-control" id="price" name="price" required>
                             </div>
                             <div class="mb-3">
                                 <label for="category_id" class="form-label">الفئة</label>
@@ -396,6 +201,71 @@
                 </form>
             </div>
         </div>
+
+        <!-- Edit Product Modal -->
+        <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <form id="editProductForm" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editProductModalLabel">تعديل المنتج</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="editNameAr" class="form-label">اسم المنتج</label>
+                                <input type="text" class="form-control" id="editNameAr" name="name_ar" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editDescriptionAr" class="form-label">وصف المنتج</label>
+                                <textarea class="form-control" id="editDescriptionAr" name="description_ar" rows="3" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editPrice" class="form-label">السعر</label>
+                                <input type="number" step="0.01" class="form-control" id="editPrice" name="price" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editCategoryId" class="form-label">الفئة</label>
+                                <select class="form-select" id="editCategoryId" name="category_id" required>
+                                    <option value="" disabled>اختر الفئة</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name_ar }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editImage" class="form-label">الصورة</label>
+                                <input class="form-control" type="file" id="editImage" name="image">
+                                <img id="editImagePreview" src="" alt="Product Image" width="50" class="mt-2">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                            <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
+    <script>
+        function populateEditModal(product, actionUrl) {
+            document.getElementById('editProductForm').action = actionUrl;
+            document.getElementById('editNameAr').value = product.name_ar;
+            document.getElementById('editDescriptionAr').value = product.description_ar;
+            document.getElementById('editPrice').value = product.price;
+            document.getElementById('editCategoryId').value = product.category_id;
+
+            const imagePreview = document.getElementById('editImagePreview');
+            if (product.image) {
+                imagePreview.src = `/storage/${product.image}`;
+                imagePreview.style.display = 'block';
+            } else {
+                imagePreview.style.display = 'none';
+            }
+        }
+    </script>
 @endsection

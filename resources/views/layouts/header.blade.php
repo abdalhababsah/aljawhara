@@ -1,8 +1,7 @@
-<nav class="navbar navbar-main navbar-expand-lg px-0 mx-3 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
+<nav class="navbar navbar-main navbar-expand-lg fixed-top px-0 mx-3 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
     <div class="container-fluid py-1 px-3">
-
         <!-- Navbar content -->
-        <div class="collapse navbar-collapse mt-sm-0 mt-2 px-0" id="navbar">
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 px-0 " id="navbar">
             <!-- Centered icons -->
             <div class="d-flex justify-content-center w-100">
                 <div class="icon-group d-flex align-items-center">
@@ -26,20 +25,21 @@
                 <i class="sidenav-toggler-line"></i>
             </div>
         </a>
-
     </div>
 </nav>
 
 <style>
+    .navbar {
+        background-color: #f8f9fa; /* Light gray */
+        border-bottom: 1px solid #ddd; /* Optional border for a clean look */
+    }
+
     .icon-img {
         height: auto;
-        /* Adjust to your desired icon size */
-        width: 50px;
-        /* Keep icons square */
+        width: 50px; /* Keep icons square */
     }
 
     .icon-group a {
-        margin: 0 2px;
-        /* Add space between icons */
+        margin: 0 2px; /* Add space between icons */
     }
 </style>
