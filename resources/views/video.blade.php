@@ -8,11 +8,10 @@
 
 
                 <div class="video-container" id="videoSection">
-                    <video autoplay muted loop playsinline preload="auto" poster="{{ asset('poster.png') }}" class="background-video">
+                    <video autoplay muted loop playsinline preload="auto" class="background-video">
                         <source src="{{ asset('assets/output_video.mp4') }}" type="video/mp4">
                             <!-- Optional: Add WebM and OGV formats for broader compatibility -->
                         <source src="{{ asset('assets/video.webm') }}" type="video/webm">
-                        <source src="{{ asset('assets/video.ogv') }}" type="video/ogg">
                         Your browser does not support the video tag.
                     </video>
 
