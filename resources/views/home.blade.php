@@ -53,10 +53,10 @@
         }
 
         /* Remove this CSS as it’s not needed anymore
-            #exploreButtonLink.clicked ~ #videoSection {
-                display: none;
-            }
-            */
+                #exploreButtonLink.clicked ~ #videoSection {
+                    display: none;
+                }
+                */
 
         /* Existing Styles */
         body {
@@ -185,10 +185,11 @@
                 width: 150px;
                 /* Reduce right image width for tablets */
             }
+
             .card-container {
 
-            margin-top: 95px;
-        }
+                margin-top: 95px;
+            }
         }
 
         /* Slider Modal Styles */
@@ -353,9 +354,27 @@
         }
 
         /* Adjust footer styles for smaller screens */
+        @media (min-width: 368px) and (max-width: 585px) {
+            .card {
+                width: 161px;
+                height: 323px !important;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+            }
+
+        }
+
         @media (max-width: 767px) {
             .swipe-indicator {
                 font-size: 0.9rem;
+            }
+            .card-container {
+
+                margin-left: 1px;
+
             }
         }
 
@@ -441,7 +460,7 @@
             $('#exploreButtonLink').on('click', function() {
                 $('#videoSection').slideUp(500, function() {
                     $(this)
-                .remove(); // Optionally remove the video section from the DOM after the animation
+                        .remove(); // Optionally remove the video section from the DOM after the animation
                 });
             });
 
