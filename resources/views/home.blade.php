@@ -53,10 +53,10 @@
         }
 
         /* Remove this CSS as it’s not needed anymore
-                #exploreButtonLink.clicked ~ #videoSection {
-                    display: none;
-                }
-                */
+                        #exploreButtonLink.clicked ~ #videoSection {
+                            display: none;
+                        }
+                        */
 
         /* Existing Styles */
         body {
@@ -353,8 +353,19 @@
             }
         }
 
+        @media (min-width: 546px) and (max-width: 585px) {
+            .card {
+                width: 250px;
+                height: 323px !important;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+        }
+
         /* Adjust footer styles for smaller screens */
-        @media (min-width: 368px) and (max-width: 585px) {
+        @media (min-width: 368px) and (max-width: 546px) {
             .card {
                 width: 161px;
                 height: 323px !important;
@@ -371,6 +382,7 @@
             .swipe-indicator {
                 font-size: 0.9rem;
             }
+
             .card-container {
 
                 margin-left: 1px;
