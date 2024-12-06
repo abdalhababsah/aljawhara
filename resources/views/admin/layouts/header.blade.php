@@ -7,13 +7,13 @@
             <div class="d-flex justify-content-center w-100">
                 <div class="icon-group d-flex align-items-center">
                     <a href="#" class="nav-link px-2">
-                        <img src="{{ asset('assets/img/logos/kitchen-bg.png') }}" alt="Icon 2" class="icon-img">
+                        <img src="{{ asset('assets/img/logos/kitchen-bg.png') }}" alt="Icon 2" class="icon-img"style="max-width: 50px" >
                     </a>
                     <a href="#" class="nav-link px-2">
-                        <img src="{{ asset('assets/img/logos/sweets-bg.png') }}" alt="Icon 1" class="icon-img">
+                        <img src="{{ asset('assets/img/logos/sweets-bg.png') }}" alt="Icon 1" class="icon-img" style="max-width: 50px">
                     </a>
                     <a href="#" class="nav-link px-2">
-                        <img src="{{ asset('assets/img/logos/zara-edit-bg.png') }}" alt="Icon 3" class="icon-img">
+                        <img src="{{ asset('assets/img/logos/zara-edit-bg.png') }}" alt="Icon 3" class="icon-img" style="max-width: 50px">
                     </a>
                 </div>
             </div>
