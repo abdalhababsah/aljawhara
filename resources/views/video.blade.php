@@ -7,7 +7,7 @@
         <div class="card-container">
             <div class="video-container" id="videoSection">
 
-                <video autoplay muted loop playsinline preload="auto" poster="{{asset("assets/img/IMG-0653-4.jpg")}}" class="background-video">
+                <video autoplay muted loop playsinline preload="auto" poster="{{ asset('assets/img/IMG-0653-4.jpg') }}" class="background-video">
                     <source src="{{ asset('assets/output.mp4') }}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -74,15 +74,19 @@
                 background: rgba(0, 0, 0, 0.3); /* Less opaque on smaller screens */
             }
 
-            .background-video {
-                display: none; /* Hide video on mobile */
-            }
+            /* Removed display: none to keep the video visible on mobile */
+            /* .background-video {
+                display: none;
+            } */
 
+            /* Optionally, adjust or remove the background image */
+            /*
             .video-container {
                 background-image: url('{{ asset('assets/fallback-image.jpg') }}');
                 background-size: cover;
                 background-position: center;
             }
+            */
         }
 
         /* Body Styling */
