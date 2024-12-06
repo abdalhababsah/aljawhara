@@ -185,6 +185,10 @@
                 width: 150px;
                 /* Reduce right image width for tablets */
             }
+            .card-container {
+
+            margin-top: 95px;
+        }
         }
 
         /* Slider Modal Styles */

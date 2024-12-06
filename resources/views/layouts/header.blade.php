@@ -17,14 +17,15 @@
                 </div>
             </div>
         </div>
-        <!-- Toggle button -->
-        <a href="javascript:;" class="nav-link text-body p-0 d-xl-none" id="iconNavbarSidenav">
-            <div class="sidenav-toggler-inner">
-                <i class="sidenav-toggler-line"></i>
-                <i class="sidenav-toggler-line"></i>
-                <i class="sidenav-toggler-line"></i>
-            </div>
-        </a>
+        @unless (Request::is('/')) <!-- Checks if the current route is not "/" -->
+            <a href="javascript:;" class="nav-link text-body p-0 d-xl-none" id="iconNavbarSidenav">
+                <div class="sidenav-toggler-inner">
+                    <i class="sidenav-toggler-line"></i>
+                    <i class="sidenav-toggler-line"></i>
+                    <i class="sidenav-toggler-line"></i>
+                </div>
+            </a>
+        @endunless
     </div>
 </nav>
 
