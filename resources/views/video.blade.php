@@ -4,10 +4,19 @@
 
 @section('content')
     <div class="video-background">
-        <video autoplay muted loop playsinline class="bg-video" poster="{{ asset('assets/img/IMG-0653-4.jpg') }}">
-            <source src="{{ asset('assets/output.mp4') }}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <video
+    autoplay
+    muted
+    loop
+    playsinline
+    webkit-playsinline
+    preload="auto"
+    poster="{{ asset('assets/img/IMG-0653-4.jpg') }}"
+    class="bg-video"
+>
+    <source src="{{ asset('assets/output.mp4') }}" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
     </div>
 
     <div class="content-overlay">
