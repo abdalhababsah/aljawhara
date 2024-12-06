@@ -53,10 +53,10 @@
         }
 
         /* Remove this CSS as it’s not needed anymore
-                        #exploreButtonLink.clicked ~ #videoSection {
-                            display: none;
-                        }
-                        */
+                            #exploreButtonLink.clicked ~ #videoSection {
+                                display: none;
+                            }
+                            */
 
         /* Existing Styles */
         body {
@@ -494,6 +494,7 @@
                     acceleration: true,
                     gradients: true,
                     elevation: 50,
+                    direction: 'rtl',
                     display: 'single', // Display one page at a time
                     page: currentPage,
                     when: {
@@ -524,14 +525,14 @@
                 // Handle swipe left to go to the previous page
                 hammer.on('swipeleft', function() {
                     if (currentPage > 1) {
-                        $('#flipbook').turn('previous');
+                        $('#flipbook').turn('next');
                     }
                 });
 
                 // Handle swipe right to go to the next page
                 hammer.on('swiperight', function() {
                     if (currentPage < totalPages) {
-                        $('#flipbook').turn('next');
+                        $('#flipbook').turn('previous');
                     }
                 });
             }
@@ -594,15 +595,15 @@
             function updateSwipeIndicator() {
                 let swipeText = '';
                 if (currentPage === 1 && totalPages > 1) {
-                    swipeText = '<i class="fa fa-arrow-left"></i> Swipe Left to see more';
+                    swipeText = '<i class="fa fa-arrow-right"></i> اسحب لليمين للمزيد';
                 } else if (currentPage > 1 && currentPage < totalPages) {
                     swipeText =
-                        '<i class="fa fa-arrow-left"></i> Swipe Left | Swipe Right <i class="fa fa-arrow-right"></i>';
+                        '<i class="fa fa-arrow-right"></i> اسحب لليمين | اسحب لليسار <i class="fa fa-arrow-left"></i>';
                 } else if (currentPage === totalPages && totalPages > 1) {
-                    swipeText = 'Swipe Right to go back <i class="fa fa-arrow-right"></i>';
+                    swipeText = 'اسحب لليسار للرجوع <i class="fa fa-arrow-left"></i>';
                 } else {
                     swipeText =
-                        'Swipe Left or Right to navigate <i class="fa fa-arrow-left"></i> <i class="fa fa-arrow-right"></i>';
+                        'اسحب لليمين أو لليسار للتنقل <i class="fa fa-arrow-right"></i> <i class="fa fa-arrow-left"></i>';
                 }
                 $('.swipe-indicator').html(swipeText);
             }
