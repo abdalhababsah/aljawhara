@@ -23,10 +23,9 @@
                 <div class="card-wrapper">
                     <div class="card p-3 bg-white product-card">
                         <div class="about-product text-center mt-3">
-                            <img src="{{ asset('assets/img/testimg.jpg') }}" class="img-fluid product-img" alt="Product Image">
+                            <img src="{{ asset('storage/' . $product->image) }}" class="img-fluid product-img" alt="{{ $product->description_ar }}">
                             <div class="mt-3">
                                 <h4 class="text-dark">{{ $product->name_ar }}</h4>
-                                {{-- <h6 class="text-muted">{{ $product->description_ar  }}</h6> --}}
                             </div>
                         </div>
                         <div class="stats mt-3">
@@ -40,23 +39,7 @@
                 <p>لا توجد منتجات متاحة لهذا الصنف</p>
             @endforelse
         </div>
-        <footer class="footer py-4">
-            <div class="container-fluid">
-                <div class="row align-items-center justify-content-lg-between">
-                    <div class="col-lg-6 mb-lg-0 mb-4">
-                        <div class="copyright text-center text-sm text-muted text-lg-end">
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>,
-                            made with <i class="fa fa-heart text-danger"></i> by
-                            <a href="#" class="font-weight-bold" target="_blank">Creative Tim</a>
-                            for a better web.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+
     </div>
 
     <!-- Slider Modal -->
