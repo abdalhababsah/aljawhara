@@ -5,22 +5,33 @@
 @section('content')
     <div class="container-fluid py-4">
         <div class="card-container">
+            <!-- Video Container -->
+            <div class="video-container" id="videoSection">
+                <video autoplay muted loop playsinline preload="auto" class="background-video">
+                    <source src="{{ asset('assets/video.mp4') }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
 
-
-                <div class="video-container" id="videoSection">
-                    <video autoplay muted loop class="background-video">
-                        <source src="{{ asset('assets/video.mp4') }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-
-                    <div class="center-button" id="exploreButton">
-                        <a href="{{('menu')}}" class="btn bg-gradient-dark" id="exploreButtonLink">Explore
-                            Products</a>
-                    </div>
+                <div class="center-button" id="exploreButton">
+                    <a href="{{ url('menu') }}" class="btn bg-gradient-dark" id="exploreButtonLink">Explore Products</a>
                 </div>
+            </div>
         </div>
-
     </div>
+
+    <script>
+        $(document).ready(function() {
+            // Handle 'Explore Products' button click to fade out the video section
+            $('#exploreButtonLink').on('click', function(e) {
+                e.preventDefault(); // Prevent default anchor behavior
+                $('#videoSection').slideUp(500, function() {
+                    $(this).remove(); // Optionally remove the video section from the DOM after the animation
+                    // Optionally navigate to the menu page after the animation
+                    window.location.href = "{{ url('menu') }}";
+                });
+            });
+        });
+    </script>
 
     <style>
         /* Your existing styles */

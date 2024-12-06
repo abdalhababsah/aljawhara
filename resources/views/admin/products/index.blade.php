@@ -5,7 +5,7 @@
     <!-- Flash Messages -->
     
     <div class="row">
-        <div id="flash-message-container">
+        <div id="flash-message-container" style="z-index: 3006666">
             @if (session('success'))
                 <div id="flash-success" class="flash-message">
                     {{ session('success') }}
