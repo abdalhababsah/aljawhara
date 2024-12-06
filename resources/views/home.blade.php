@@ -53,10 +53,10 @@
         }
 
         /* Remove this CSS as it’s not needed anymore
-                            #exploreButtonLink.clicked ~ #videoSection {
-                                display: none;
-                            }
-                            */
+                        #exploreButtonLink.clicked ~ #videoSection {
+                            display: none;
+                        }
+                        */
 
         /* Existing Styles */
         body {
@@ -594,15 +594,15 @@
             function updateSwipeIndicator() {
                 let swipeText = '';
                 if (currentPage === 1 && totalPages > 1) {
-                    swipeText = '<i class="fa fa-arrow-right"></i> اسحب لليمين للمزيد';
+                    swipeText = '<i class="fa fa-arrow-left"></i> Swipe Left to see more';
                 } else if (currentPage > 1 && currentPage < totalPages) {
                     swipeText =
-                        '<i class="fa fa-arrow-right"></i> اسحب لليمين | اسحب لليسار <i class="fa fa-arrow-left"></i>';
+                        '<i class="fa fa-arrow-left"></i> Swipe Left | Swipe Right <i class="fa fa-arrow-right"></i>';
                 } else if (currentPage === totalPages && totalPages > 1) {
-                    swipeText = 'اسحب لليسار للرجوع <i class="fa fa-arrow-left"></i>';
+                    swipeText = 'Swipe Right to go back <i class="fa fa-arrow-right"></i>';
                 } else {
                     swipeText =
-                        'اسحب لليمين أو لليسار للتنقل <i class="fa fa-arrow-right"></i> <i class="fa fa-arrow-left"></i>';
+                        'Swipe Left or Right to navigate <i class="fa fa-arrow-left"></i> <i class="fa fa-arrow-right"></i>';
                 }
                 $('.swipe-indicator').html(swipeText);
             }
