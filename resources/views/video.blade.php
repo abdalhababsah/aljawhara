@@ -3,50 +3,49 @@
 @extends('layouts.mainlayout')
 
 @section('content')
-    <div class="container-fluid py-4">
-        <div class="card-container">
-            <div class="video-container" id="videoSection">
+    <div class="video-background">
+        <video autoplay muted loop playsinline class="bg-video" poster="{{ asset('assets/img/IMG-0653-4.jpg') }}">
+            <source src="{{ asset('assets/output.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
 
-                <video autoplay muted loop playsinline preload="auto" poster="{{ asset('assets/img/IMG-0653-4.jpg') }}" class="background-video">
-                    <source src="{{ asset('assets/output.mp4') }}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-
-                <div class="center-button" id="exploreButton">
-                    <a href="{{ url('menu') }}" class="btn bg-gradient-dark" id="exploreButtonLink">Explore Products</a>
-                </div>
-            </div>
+    <div class="content-overlay">
+        <div class="center-button">
+            <a href="{{ url('menu') }}" class="btn bg-gradient-dark" id="exploreButtonLink">Explore Products</a>
         </div>
     </div>
 
     <style>
-        /* Video Container Styling */
-        .video-container {
+        /* Video Background Styling */
+        .video-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1000000; /* Ensure it's above all other content */
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            overflow: hidden;
+            z-index: -1; /* Ensure it's behind all other content */
         }
 
-        .background-video {
+        .bg-video {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .center-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            z-index: 1; /* Ensure the button is above the video */
+        /* Content Overlay Styling */
+        .content-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* Ensure it's above the video */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
         }
 
         .center-button .btn {
@@ -70,41 +69,31 @@
                 padding: 10px 20px;
             }
 
-            .video-container {
-                background: rgba(0, 0, 0, 0.3); /* Less opaque on smaller screens */
+            /* Optionally, adjust the overlay opacity */
+            .content-overlay {
+                background: rgba(0, 0, 0, 0.3);
             }
-
-            /* Removed display: none to keep the video visible on mobile */
-            /* .background-video {
-                display: none;
-            } */
-
-            /* Optionally, adjust or remove the background image */
-            /*
-            .video-container {
-                background-image: url('{{ asset('assets/fallback-image.jpg') }}');
-                background-size: cover;
-                background-position: center;
-            }
-            */
         }
 
         /* Body Styling */
         body {
+            margin: 0;
+            padding: 0;
             background: #f9f9f9;
+            overflow-x: hidden;
         }
     </style>
 
     <script>
-        $(document).ready(function() {
-            // Handle 'Explore Products' button click to fade out the video section
-            $('#exploreButtonLink').on('click', function(e) {
+        document.addEventListener('DOMContentLoaded', function () {
+            // Handle 'Explore Products' button click to fade out the overlay
+            document.getElementById('exploreButtonLink').addEventListener('click', function (e) {
                 e.preventDefault(); // Prevent default anchor behavior
-                $('#videoSection').slideUp(500, function() {
-                    $(this).remove(); // Optionally remove the video section from the DOM after the animation
-                    // Navigate to the menu page after the animation
+                document.querySelector('.content-overlay').style.transition = 'opacity 0.5s';
+                document.querySelector('.content-overlay').style.opacity = '0';
+                setTimeout(function () {
                     window.location.href = "{{ url('menu') }}";
-                });
+                }, 500); // Match the transition duration
             });
         });
     </script>
