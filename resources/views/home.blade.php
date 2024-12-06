@@ -494,7 +494,6 @@
                     acceleration: true,
                     gradients: true,
                     elevation: 50,
-                    direction: 'rtl',
                     display: 'single', // Display one page at a time
                     page: currentPage,
                     when: {
@@ -525,14 +524,14 @@
                 // Handle swipe left to go to the previous page
                 hammer.on('swipeleft', function() {
                     if (currentPage > 1) {
-                        $('#flipbook').turn('next');
+                        $('#flipbook').turn('previous');
                     }
                 });
 
                 // Handle swipe right to go to the next page
                 hammer.on('swiperight', function() {
                     if (currentPage < totalPages) {
-                        $('#flipbook').turn('previous');
+                        $('#flipbook').turn('next');
                     }
                 });
             }
